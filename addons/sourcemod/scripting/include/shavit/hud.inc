@@ -174,6 +174,19 @@ forward Action Shavit_OnKeyHintHUD(int client, int target, char[] keyhint, int k
 forward Action Shavit_PreOnKeyHintHUD(int client, int target, char[] keyhint, int keyhintlength, int track, int style, bool &forceUpdate);
 
 /**
+ * Called when the center hud updates.
+ *
+ * @param client                    Client index that recieves the hud.
+ * @param target                    Target entity that is either the client or what the client is spectating.
+ * @param buffer                    Reference to the HUD buffer.
+ * @param buflen                    Max length of the buffer.
+ * @param data                      huddata_t which contains target info.
+ *
+ * @return                          Plugin_Handled or Plugin_Stop to block the HUD message from appearing. Plugin_Changed if you modify the buffer string.
+ */
+forward Action Shavit_OnDrawCenterHUD(int client, int target, char[] buffer, int buflen, huddata_t data);
+
+/**
  * Called before the center hud updates.
  *
  * @param client                    Client index that recieves the hud.
@@ -185,6 +198,24 @@ forward Action Shavit_PreOnKeyHintHUD(int client, int target, char[] keyhint, in
  * @return                          Plugin_Handled or Plugin_Stop to block the HUD message from appearing. Plugin_Changed if you modify the buffer string.
  */
 forward Action Shavit_PreOnDrawCenterHUD(int client, int target, char[] buffer, int buflen, huddata_t data);
+
+/**
+ * Called when the !keys hud updates.
+ *
+ * @param client                    Client index that recieves the hud.
+ * @param target                    Target entity that is either the client or what the client is spectating.
+ * @param style                     The target's style.
+ * @param buttons                   The target's buttons.
+ * @param anglediff                 The difference from the target's last angles and current angles.
+ * @param buffer                    Reference to the HUD buffer.
+ * @param buflen                    Max length of the buffer.
+ * @param scrolls                   How many scrolls the player has so far (relevant for non-auto styles).
+ * @param prevscrolls               How many scrolls previously.
+ * @param alternate_center_keys     True when you should draw a Linux-specific format since fonts & alignment are different.
+ *
+ * @return                          Plugin_Handled or Plugin_Stop to block the HUD message from appearing. Plugin_Changed if you modify the buffer string.
+ */
+forward Action Shavit_OnDrawKeysHUD(int client, int target, int style, int buttons, float anglediff, char[] buffer, int buflen, int scrolls, int prevscrolls, bool alternate_center_keys);
 
 /**
  * Called before the !keys hud updates.

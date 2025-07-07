@@ -1,0 +1,33 @@
+"Phrases"
+{
+	"shavit-hudextras_TimeSuffix"
+    {
+        "en"        ""
+    }
+    "shavit-hudextras_JumpsSuffix"
+    {
+        "en"        "↑"
+    }
+    "shavit-hudextras_StrafeSuffix"
+    {
+        "en"        "↔"
+    }
+    "shavit-hudextras_SpeedSuffix"
+    {
+        "en"        ""
+    }
+    "shavit-hudextras_Linear"
+    {
+        "en"        "linear"
+    }
+    "shavit-hudextras_Stage"
+    {
+        "#format"   "{1:d},{2:d}"
+        "en"        "stage {1}/{2}"
+    }
+	"shavit-hudextras_Tier"
+	{
+		"#format"	"{1:d}"
+		"en"		"〈T{1}〉"
+	}
+}

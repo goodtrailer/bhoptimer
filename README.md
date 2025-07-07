@@ -1,5 +1,15 @@
 [![Discord server](https://discordapp.com/api/guilds/389675819959844865/widget.png?style=shield)](https://discord.gg/jyA9q5k)
 
+# fork of shavit's bhoptimer
+
+Changes made:
+* shavit-hud: Added `Shavit_OnDrawCenterHUD` (which corresponds to `Shavit_PreOnDrawCenterHUD`)
+* shavit-hud: Added `Shavit_OnDrawKeysHUD` (which corresponds to `Shavit_PreOnDrawKeysHUD`)
+* shavit-hud: Simplified the center HUD text to make it cleaner and faster to read
+* shavit-hud: Made the top left HUD lowercase
+
+---
+
 ### RECOMPILE ALL YOUR PLUGINS THAT USE `#include <shavit>` OR STUFF WILL BREAK
 
 ### CS:GO is dead. Support won't be removed and gamedata should:tm: still work but it isn't actively tested.

@@ -53,9 +53,13 @@
 	{
 		"en"		"Time"
 	}
+    "HudWRText"
+    {
+        "en"        "wr"
+    }
 	"HudBestText"
 	{
-		"en"		"Best"
+		"en"		"pb"
 	}
 	"HudJumpsText"
 	{

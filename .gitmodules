@@ -1,0 +1,6 @@
+[submodule "thirdparty/sm-ripext"]
+	path = thirdparty/sm-ripext
+	url = https://github.com/ErikMinekus/sm-ripext
+[submodule "thirdparty/sm-json"]
+	path = thirdparty/sm-json
+	url = https://github.com/clugg/sm-json

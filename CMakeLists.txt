@@ -18,9 +18,13 @@ set(INCLUDE_DIR ${CMAKE_CURRENT_BINARY_DIR}/include/)
 set(THIRDPARTY_SUBDIRS
     ${SOURCEMOD_DIR}/addons/sourcemod/scripting/include/
     ${SCRIPTING_DIR}/include/
+    ${THIRDPARTY_DIR}/sm-json/addons/sourcemod/scripting/include/
+    ${THIRDPARTY_DIR}/sm-ripext/pawn/scripting/include/
 )
 
 set(INCLUDE_SUBDIRS
+    ${INCLUDE_DIR}
+    ${INCLUDE_DIR}
     ${INCLUDE_DIR}
     ${INCLUDE_DIR}
 )

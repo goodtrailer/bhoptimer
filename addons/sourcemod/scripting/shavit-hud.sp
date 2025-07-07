@@ -65,7 +65,9 @@ Handle gH_Forwards_OnTopLeftHUD = null;
 Handle gH_Forwards_PreOnTopLeftHUD = null;
 Handle gH_Forwards_OnKeyHintHUD = null;
 Handle gH_Forwards_PreOnKeyHintHUD = null;
+Handle gH_Forwards_OnDrawCenterHUD = null;
 Handle gH_Forwards_PreOnDrawCenterHUD = null;
+Handle gH_Forwards_OnDrawKeysHUD = null;
 Handle gH_Forwards_PreOnDrawKeysHUD = null;
 
 // modules
@@ -134,7 +136,9 @@ public APLRes AskPluginLoad2(Handle myself, bool late, char[] error, int err_max
 	gH_Forwards_PreOnTopLeftHUD = CreateGlobalForward("Shavit_PreOnTopLeftHUD", ET_Event, Param_Cell, Param_Cell, Param_String, Param_Cell, Param_Cell, Param_Cell, Param_CellByRef);
 	gH_Forwards_OnKeyHintHUD = CreateGlobalForward("Shavit_OnKeyHintHUD", ET_Event, Param_Cell, Param_Cell, Param_String, Param_Cell, Param_Cell, Param_Cell);
 	gH_Forwards_PreOnKeyHintHUD = CreateGlobalForward("Shavit_PreOnKeyHintHUD", ET_Event, Param_Cell, Param_Cell, Param_String, Param_Cell, Param_Cell, Param_Cell, Param_CellByRef);
+	gH_Forwards_OnDrawCenterHUD = CreateGlobalForward("Shavit_OnDrawCenterHUD", ET_Event, Param_Cell, Param_Cell, Param_String, Param_Cell, Param_Array);
 	gH_Forwards_PreOnDrawCenterHUD = CreateGlobalForward("Shavit_PreOnDrawCenterHUD", ET_Event, Param_Cell, Param_Cell, Param_String, Param_Cell, Param_Array);
+	gH_Forwards_OnDrawKeysHUD = CreateGlobalForward("Shavit_OnDrawKeysHUD", ET_Event, Param_Cell, Param_Cell, Param_Cell, Param_Cell, Param_Cell, Param_String, Param_Cell, Param_Cell, Param_Cell, Param_Cell);
 	gH_Forwards_PreOnDrawKeysHUD = CreateGlobalForward("Shavit_PreOnDrawKeysHUD", ET_Event, Param_Cell, Param_Cell, Param_Cell, Param_Cell, Param_Cell, Param_String, Param_Cell, Param_Cell, Param_Cell, Param_Cell);
 
 	// natives
@@ -1816,6 +1820,20 @@ void UpdateMainHUD(int client)
 		}
 	}
 
+    Action postresult = Plugin_Continue;
+	Call_StartForward(gH_Forwards_OnDrawCenterHUD);
+	Call_PushCell(client);
+	Call_PushCell(target);
+	Call_PushStringEx(sBuffer, sizeof(sBuffer), SM_PARAM_STRING_COPY, SM_PARAM_COPYBACK);
+	Call_PushCell(sizeof(sBuffer));
+	Call_PushArray(huddata, sizeof(huddata));
+	Call_Finish(postresult);
+
+	if (postresult == Plugin_Handled || postresult == Plugin_Stop)
+	{
+		return;
+	}
+
 	if (IsSource2013(gEV_Type))
 	{
 		UnreliablePrintHintText(client, sBuffer);
@@ -2000,6 +2018,25 @@ void UpdateCenterKeys(int client)
 	if (preresult == Plugin_Continue)
 	{
 		FillCenterKeys(client, target, style, buttons, fAngleDiff, sCenterText, usable_size);
+	}
+
+	Action postresult = Plugin_Continue;
+	Call_StartForward(gH_Forwards_OnDrawKeysHUD);
+	Call_PushCell(client);
+	Call_PushCell(target);
+	Call_PushCell(style);
+	Call_PushCell(buttons);
+	Call_PushCell(fAngleDiff);
+	Call_PushStringEx(sCenterText, usable_size, SM_PARAM_STRING_COPY, SM_PARAM_COPYBACK);
+	Call_PushCell(usable_size);
+	Call_PushCell(scrolls);
+	Call_PushCell(prevscrolls);
+	Call_PushCell(gB_AlternateCenterKeys[client]);
+	Call_Finish(postresult);
+
+	if (postresult == Plugin_Handled || postresult == Plugin_Stop)
+	{
+		return;
 	}
 
 	if (IsSource2013(gEV_Type))
@@ -2212,7 +2249,7 @@ void UpdateTopLeftHUD(int client, bool wait)
 			char sWRName[MAX_NAME_LENGTH];
 			Shavit_GetWRName(style, sWRName, MAX_NAME_LENGTH, track);
 
-			FormatEx(sTopLeft, sizeof(sTopLeft), "%sWR: %s (%s)", sTopLeft, sWRTime, sWRName);
+			FormatEx(sTopLeft, sizeof(sTopLeft), "%s%T: %s (%s)", sTopLeft, "HudWRText", client, sWRTime, sWRName);
 		}
 
 		char sTargetPB[64];
