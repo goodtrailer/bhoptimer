@@ -1,5 +1,3 @@
-[![Discord server](https://discordapp.com/api/guilds/389675819959844865/widget.png?style=shield)](https://discord.gg/jyA9q5k)
-
 # fork of shavit's bhoptimer
 
 Changes made:
@@ -10,6 +8,8 @@ Changes made:
 * shavit-hudextras: Moved key overlay to bottom of screen, if DynamicChannels is installed
 
 ---
+
+[![Discord server](https://discordapp.com/api/guilds/389675819959844865/widget.png?style=shield)](https://discord.gg/jyA9q5k)
 
 ### RECOMPILE ALL YOUR PLUGINS THAT USE `#include <shavit>` OR STUFF WILL BREAK
 
