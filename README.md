@@ -5,8 +5,9 @@
 Changes made:
 * shavit-hud: Added `Shavit_OnDrawCenterHUD` (which corresponds to `Shavit_PreOnDrawCenterHUD`)
 * shavit-hud: Added `Shavit_OnDrawKeysHUD` (which corresponds to `Shavit_PreOnDrawKeysHUD`)
-* shavit-hud: Simplified the center HUD text to make it cleaner and faster to read
-* shavit-hud: Made the top left HUD lowercase
+* shavit-hudextras: Simplified the center HUD text to make it cleaner and faster to read
+* shavit-hudextras: Made the top left HUD lowercase
+* shavit-hudextras: Moved key overlay to bottom of screen, if DynamicChannels is installed
 
 ---
 
