@@ -34,11 +34,6 @@ public void OnPluginStart()
 	LoadTranslations("shavit-hud.phrases");
 	LoadTranslations("shavit-hudextras.phrases");
 
-    char map[MAP_BUFFER_LENGTH];
-    GetCurrentMap(map, MAP_BUFFER_LENGTH);
-    LessStupidGetMapDisplayName(map, gS_MapName, MAP_BUFFER_LENGTH);
-    gI_MapTier = Shavit_GetMapTier(gS_MapName);
-
 	gB_DynamicChannels = LibraryExists("DynamicChannels");
 }
 
@@ -180,6 +175,12 @@ public Action Shavit_OnDrawCenterHUD(int client, int target, char[] buf, int buf
     while (ReplaceString(buf, bufLen, "\n\n", "\n") > 0) {}
 
     return ret;
+}
+
+public void OnMapInit(const char[] mapName)
+{
+    LessStupidGetMapDisplayName(mapName, gS_MapName, MAP_BUFFER_LENGTH);
+    gI_MapTier = Shavit_GetMapTier(gS_MapName);
 }
 
 public void Shavit_OnTierAssigned(const char[] map, int tier)

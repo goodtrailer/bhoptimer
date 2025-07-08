@@ -1,5 +1,7 @@
 # fork of shavit's bhoptimer
 
+This fork has HUD changes made for a private custom HUD. The private HUD is based on [telehud 2.0 Sakura](https://gamebanana.com/mods/445582), which I recommend playing with.
+
 Changes made:
 * shavit-hud: Added `Shavit_OnDrawCenterHUD` (which corresponds to `Shavit_PreOnDrawCenterHUD`)
 * shavit-hud: Added `Shavit_OnDrawKeysHUD` (which corresponds to `Shavit_PreOnDrawKeysHUD`)
